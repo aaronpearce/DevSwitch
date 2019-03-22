@@ -15,6 +15,8 @@ Key Features:
 - URL Schemes for inter-app integration
 - App Bookmarking
 
+Follow me on Twitter at [@aaron_pearce](https://twitter.com/aaron_pearce).
+
 Getting involved
 ----------------
 
