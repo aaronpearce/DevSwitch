@@ -57,7 +57,7 @@ Use this string literal in the above, `DevTeam.xcconfig` file to code sign
 
 ## Thanks
 
-Thanks to everyone for their support in development and throughout the initial review process that failed and a particular thanks to [@kylehickinson](https://github.com/kylehickinson) for the suggestion to use Brave/Firefox's `.xcconfig` based setup for local development signing.
+Thanks to everyone for their support in development and throughout the initial review process that failed and a particular thanks to [@kylehickinson](https://github.com/kylehickinson) for the suggestion to use Brave's `.xcconfig` based setup for local development signing. Credit to [@jhreis](https://github.com/jhreis) for the initial implementation that I based this upon.
 
 ## Open Source & Copying
 
