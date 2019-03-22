@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/aaronpearce/DevSwitch-Private/blob/master/app-icon.png?raw=true" alt="Sublime's custom image"/>
+    <img src="https://github.com/aaronpearce/DevSwitch/blob/master/app-icon.png?raw=true" alt="DevSwitch App Icon"/>
 </p>
 
 
