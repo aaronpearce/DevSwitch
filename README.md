@@ -20,7 +20,7 @@ Follow me on Twitter at [@aaron_pearce](https://twitter.com/aaron_pearce).
 Getting involved
 ----------------
 
-We encourage you to participate in this open source project. We love Pull Requests, Bug Reports, ideas, (security) code reviews or any kind of positive contribution.
+Please feel free to participate in this open source project. I'd love to see Pull Requests, Bug Reports, ideas and any other positive contributions from the community!
 
 Building the code
 -----------------
