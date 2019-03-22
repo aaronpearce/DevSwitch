@@ -1,0 +1,6 @@
+module Pods_DevSwitch {
+  umbrella header "Pods-DevSwitch-umbrella.h"
+
+  export *
+  module * { export * }
+}

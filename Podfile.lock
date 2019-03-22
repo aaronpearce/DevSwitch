@@ -1,0 +1,43 @@
+PODS:
+  - DeviceKit (1.10.0)
+  - Kingfisher (5.1.1)
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
+  - Reusable (4.0.5):
+    - Reusable/Storyboard (= 4.0.5)
+    - Reusable/View (= 4.0.5)
+  - Reusable/Storyboard (4.0.5)
+  - Reusable/View (4.0.5)
+  - SwipeCellKit (2.5.1)
+
+DEPENDENCIES:
+  - DeviceKit (~> 1.10.0)
+  - Kingfisher (~> 5.1.1)
+  - Realm (~> 3.13.1)
+  - RealmSwift (~> 3.13.1)
+  - Reusable (~> 4.0.5)
+  - SwipeCellKit (~> 2.5.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DeviceKit
+    - Kingfisher
+    - Realm
+    - RealmSwift
+    - Reusable
+    - SwipeCellKit
+
+SPEC CHECKSUMS:
+  DeviceKit: 2a6cf0d1ec05e2ac7f9b24cdfdb3cb358900a247
+  Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  Reusable: 188be1a54ac0691bc66e5bb24ec6eb91971b315b
+  SwipeCellKit: 30fd6a4f8a8b8ac864ea389c8b4c8bac5ba5471a
+
+PODFILE CHECKSUM: caa70cd23a64e67084be8468e0c86c156e4c474b
+
+COCOAPODS: 1.6.1
