@@ -39,6 +39,8 @@ Building the code
 
 ## Code Signing
 
+If *bootstrap.sh* fails to correctly offer your Apple Team ID, please follow this guide to manually add it.
+
 1. After running the *bootstrap.sh* script in the setup instructions navigate to:
 <br>`DevSwitch/Configuration/Local/DevTeam.xcconfig`
 1. Add your *Apple Team ID* in this file:
