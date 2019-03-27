@@ -638,6 +638,16 @@ public enum Device {
     public var hasBiometricSensor: Bool {
       return isTouchIDCapable || isFaceIDCapable
     }
+  
+    /// All devices that feature a sensor housing in the screen
+    public static var allDevicesWithSensorHousing: [Device] {
+      return [.iPhoneX, .iPhoneXs, .iPhoneXsMax, .iPhoneXr]
+    }
+  
+    /// Returns whether or not the device has a sensor housing
+    public var hasSensorHousing: Bool {
+      return isOneOf(Device.allDevicesWithSensorHousing)
+    }
 
   #elseif os(tvOS)
     /// All TVs
