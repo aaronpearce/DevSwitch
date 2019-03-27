@@ -17,6 +17,8 @@ Key Features:
 
 Follow me on Twitter at [@aaron_pearce](https://twitter.com/aaron_pearce).
 
+<a href='https://ko-fi.com/G2G8SCQA' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=1' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
 Getting involved
 ----------------
 
