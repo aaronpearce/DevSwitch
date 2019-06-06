@@ -1,3 +1,5 @@
+# Currently non-functional on iOS 13 due to changes in the App Store. 
+
 <p align="center">
     <img src="https://github.com/aaronpearce/DevSwitch/blob/master/app-icon.png?raw=true" alt="DevSwitch App Icon"/>
 </p>
