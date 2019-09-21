@@ -1,5 +1,3 @@
-# Currently non-functional on iOS 13 due to changes in the App Store. 
-
 <p align="center">
     <img src="https://github.com/aaronpearce/DevSwitch/blob/master/app-icon.png?raw=true" alt="DevSwitch App Icon"/>
 </p>
@@ -16,6 +14,8 @@ Key Features:
 - Favoriting Storefronts
 - URL Schemes for inter-app integration
 - App Bookmarking
+
+Note: DevSwitch does not function on iOS 13.0, but will on older versions on iOS or 13.1 onwards at this stage.
 
 Follow me on Twitter at [@aaron_pearce](https://twitter.com/aaron_pearce).
 
