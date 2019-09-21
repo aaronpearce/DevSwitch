@@ -33,7 +33,7 @@ class TerritoryCell: UICollectionViewCell, Reusable {
         let label = UILabel().usingAutoLayout()
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .black
+        label.textColor = ColorCompatibility.label
         label.numberOfLines = 2
         return label
     }()
@@ -51,7 +51,7 @@ class TerritoryCell: UICollectionViewCell, Reusable {
     func initialize() {
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = UIColor(named: "secondaryBackground")
         
         contentView.addSubviews([imageView, titleLabel, favoriteIconView])
         
@@ -62,7 +62,7 @@ class TerritoryCell: UICollectionViewCell, Reusable {
         layer.masksToBounds = false
         layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
         
-        imageView.layer.borderColor = UIColor("#F0EFF5").cgColor
+        imageView.layer.borderColor = UIColor(named: "background")?.cgColor
         imageView.layer.borderWidth = 1
         imageView.layer.cornerRadius = 16
         imageView.layer.masksToBounds = true

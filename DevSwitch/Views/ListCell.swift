@@ -19,7 +19,7 @@ class ListCell: SwipeCollectionViewCell, Reusable {
     let titleLabel: UILabel = {
         let label = UILabel().usingAutoLayout()
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = ColorCompatibility.label
         label.numberOfLines = 1
         return label
     }()
@@ -27,7 +27,7 @@ class ListCell: SwipeCollectionViewCell, Reusable {
     let subtitleLabel: UILabel = {
         let label = UILabel().usingAutoLayout()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .lightGray
+        label.textColor = ColorCompatibility.secondaryLabel
         label.numberOfLines = 1
         return label
     }()
@@ -98,7 +98,7 @@ class ListCell: SwipeCollectionViewCell, Reusable {
     func initialize() {
         internalContentView.layer.cornerRadius = 8
         internalContentView.layer.masksToBounds = true
-        internalContentView.backgroundColor = .white
+        internalContentView.backgroundColor = UIColor(named: "secondaryBackground")
         
         contentView.addSubview(internalContentView)
         internalContentView.addSubview(contentStackView)

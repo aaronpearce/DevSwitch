@@ -2,7 +2,7 @@
 //  String+MD5.swift
 //  Kingfisher
 //
-//  Created by Wei Wang on 18//25.
+//  Created by Wei Wang on 18/09/25.
 //
 //  Copyright (c) 2019 Wei Wang <onevcat@gmail.com>
 //
@@ -44,6 +44,6 @@ extension KingfisherWrapper where Base == String {
         }
         #endif
         
-        return digest.map { String(format: "%02x", $0) }.joined()
+        return digest.reduce(into: "") { $0 += String(format: "%02x", $1) }
     }
 }

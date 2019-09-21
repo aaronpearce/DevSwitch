@@ -21,7 +21,7 @@ class AppSearchViewController: UIViewController, UICollectionViewDelegate, UICol
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).usingAutoLayout()
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor("#F0EFF5")
+        collectionView.backgroundColor = UIColor(named: "background")
         collectionView.register(cellType: ListCell.self)
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
         collectionView.alwaysBounceVertical = true
@@ -56,7 +56,7 @@ class AppSearchViewController: UIViewController, UICollectionViewDelegate, UICol
         view.addSubview(collectionView)
         NSLayoutConstraint.activate(collectionView.constraintsToFit(view: view))
     
-        view.backgroundColor = UIColor("#F0EFF5")
+        view.backgroundColor = UIColor(named: "background")
         navigationItem.titleView = searchController.searchBar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(close))
     }

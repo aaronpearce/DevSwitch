@@ -43,12 +43,17 @@ public enum MemoryStorage {
     /// items from memory.
     public class Backend<T: CacheCostCalculable> {
         let storage = NSCache<NSString, StorageObject<T>>()
+
+        // Keys trackes the objects once inside the storage. For object removing triggered by user, the corresponding
+        // key would be also removed. However, for the object removing triggered by cache rule/policy of system, the
+        // key will be remained there until next `removeExpired` happens.
+        //
+        // Breaking the strict tracking could save additional locking behaviors.
+        // See https://github.com/onevcat/Kingfisher/issues/1233
         var keys = Set<String>()
 
-        var cleanTimer: Timer? = nil
-        let lock = NSLock()
-
-        let cacheDelegate = CacheDelegate<StorageObject<T>>()
+        private var cleanTimer: Timer? = nil
+        private let lock = NSLock()
 
         /// The config used in this storage. It is a value you can set and
         /// use to config the storage in air.
@@ -67,10 +72,6 @@ public enum MemoryStorage {
             self.config = config
             storage.totalCostLimit = config.totalCostLimit
             storage.countLimit = config.countLimit
-            storage.delegate = cacheDelegate
-            cacheDelegate.onObjectRemoved.delegate(on: self) { (self, obj) in
-                self.keys.remove(obj.key)
-            }
 
             cleanTimer = .scheduledTimer(withTimeInterval: config.cleanInterval, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
@@ -84,6 +85,9 @@ public enum MemoryStorage {
             for key in keys {
                 let nsKey = key as NSString
                 guard let object = storage.object(forKey: nsKey) else {
+                    // This could happen if the object is moved by cache `totalCostLimit` or `countLimit` rule.
+                    // We didn't remove the key yet until now, since we do not want to introduce additonal lock.
+                    // See https://github.com/onevcat/Kingfisher/issues/1233
                     keys.remove(key)
                     continue
                 }
@@ -121,26 +125,30 @@ public enum MemoryStorage {
             storage.setObject(object, forKey: key as NSString, cost: value.cacheCost)
             keys.insert(key)
         }
-
-        // Use this when you actually access the memory cached item.
-        // This will extend the expired data for the accessed item.
-        func value(forKey key: String) throws -> T? {
-            return value(forKey: key, extendingExpiration: true)
-        }
-
-        func value(forKey key: String, extendingExpiration: Bool) -> T? {
+        
+        /// Use this when you actually access the memory cached item.
+        /// By default, this will extend the expired data for the accessed item.
+        ///
+        /// - Parameters:
+        ///   - key: Cache Key
+        ///   - extendingExpiration: expiration value to extend item expiration time:
+        ///     * .none: The item expires after the original time, without extending after access.
+        ///     * .cacheTime: The item expiration extends by the original cache time after each access.
+        ///     * .expirationTime: The item expiration extends by the provided time after each access.
+        /// - Returns: cached object or nil
+        func value(forKey key: String, extendingExpiration: ExpirationExtending = .cacheTime) -> T? {
             guard let object = storage.object(forKey: key as NSString) else {
                 return nil
             }
             if object.expired {
                 return nil
             }
-            if extendingExpiration { object.extendExpiration() }
+            object.extendExpiration(extendingExpiration)
             return object.value
         }
 
         func isCached(forKey key: String) -> Bool {
-            guard let _ = value(forKey: key, extendingExpiration: false) else {
+            guard let _ = value(forKey: key, extendingExpiration: .none) else {
                 return false
             }
             return true
@@ -158,15 +166,6 @@ public enum MemoryStorage {
             defer { lock.unlock() }
             storage.removeAllObjects()
             keys.removeAll()
-        }
-
-        class CacheDelegate<T>: NSObject, NSCacheDelegate {
-            let onObjectRemoved = Delegate<T, Void>()
-            func cache(_ cache: NSCache<AnyObject, AnyObject>, willEvictObject obj: Any) {
-                if let obj = obj as? T {
-                    onObjectRemoved.call(obj)
-                }
-            }
         }
     }
 }
@@ -219,9 +218,16 @@ extension MemoryStorage {
             
             self.estimatedExpiration = expiration.estimatedExpirationSinceNow
         }
-        
-        func extendExpiration() {
-            self.estimatedExpiration = expiration.estimatedExpirationSinceNow
+
+        func extendExpiration(_ extendingExpiration: ExpirationExtending = .cacheTime) {
+            switch extendingExpiration {
+            case .none:
+                return
+            case .cacheTime:
+                self.estimatedExpiration = expiration.estimatedExpirationSinceNow
+            case .expirationTime(let expirationTime):
+                self.estimatedExpiration = expirationTime.estimatedExpirationSinceNow
+            }
         }
         
         var expired: Bool {

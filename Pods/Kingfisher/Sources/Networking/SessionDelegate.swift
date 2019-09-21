@@ -165,14 +165,12 @@ extension SessionDelegate: URLSessionDataDelegate {
         guard let task = self.task(for: dataTask) else {
             return
         }
+        
         task.didReceiveData(data)
-
-        if let expectedContentLength = dataTask.response?.expectedContentLength, expectedContentLength != -1 {
-            let dataLength = Int64(task.mutableData.count)
-            DispatchQueue.main.async {
-                task.callbacks.forEach { callback in
-                    callback.onProgress?.call((dataLength, expectedContentLength))
-                }
+        
+        task.callbacks.forEach { callback in
+            callback.options.onDataReceived?.forEach { sideEffect in
+                sideEffect.onDataReceived(session, task: task, data: data)
             }
         }
     }
@@ -248,6 +246,6 @@ extension SessionDelegate: URLSessionDataDelegate {
             return
         }
         remove(task)
-        sessionTask.onTaskDone.call((result, Array(sessionTask.callbacks)))
+        sessionTask.onTaskDone.call((result, sessionTask.callbacks))
     }
 }

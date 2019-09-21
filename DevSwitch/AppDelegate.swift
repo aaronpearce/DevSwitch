@@ -140,8 +140,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
     
     private func setAppearances() {
-        window?.tintColor = UIColor("#2042a6")
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor("#2042a6")]
+        window?.tintColor = UIColor(named: "primary")
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "primary")!]
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -20,7 +20,7 @@ class AppListViewController: UIViewController, UICollectionViewDelegate, UIColle
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).usingAutoLayout()
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor("#F0EFF5")
+        collectionView.backgroundColor = UIColor(named: "background")
         collectionView.register(cellType: ListCell.self)
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
         collectionView.alwaysBounceVertical = true
@@ -48,7 +48,7 @@ class AppListViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         title = "Apps".localized
         
-        view.backgroundColor = UIColor("#F0EFF5")
+        view.backgroundColor = UIColor(named: "background")
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(searchForApp(_:)))

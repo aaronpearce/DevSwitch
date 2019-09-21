@@ -11,6 +11,7 @@
 		CD05EC0822436B4C00CBCE27 /* TerritoryFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD05EC0722436B4C00CBCE27 /* TerritoryFooterView.swift */; };
 		CD05EC0A22436B6500CBCE27 /* NoCancelButtonSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD05EC0922436B6500CBCE27 /* NoCancelButtonSearchController.swift */; };
 		CD05EC0C22436B6F00CBCE27 /* NoCancelButtonSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD05EC0B22436B6F00CBCE27 /* NoCancelButtonSearchBar.swift */; };
+		CD1830D5233609D0008F7DBF /* ColorCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1830D4233609D0008F7DBF /* ColorCompatibility.swift */; };
 		CDB62D81222152D50013851A /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB62D7F222152D50013851A /* UIColor+Hex.swift */; };
 		CDB62D82222152D50013851A /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB62D80222152D50013851A /* String+Localized.swift */; };
 		CDB62D842221562B0013851A /* TerritoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB62D832221562B0013851A /* TerritoryCell.swift */; };
@@ -64,6 +65,7 @@
 		CD05EC0722436B4C00CBCE27 /* TerritoryFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerritoryFooterView.swift; sourceTree = "<group>"; };
 		CD05EC0922436B6500CBCE27 /* NoCancelButtonSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCancelButtonSearchController.swift; sourceTree = "<group>"; };
 		CD05EC0B22436B6F00CBCE27 /* NoCancelButtonSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCancelButtonSearchBar.swift; sourceTree = "<group>"; };
+		CD1830D4233609D0008F7DBF /* ColorCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCompatibility.swift; sourceTree = "<group>"; };
 		CDB62D7F222152D50013851A /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		CDB62D80222152D50013851A /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		CDB62D832221562B0013851A /* TerritoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerritoryCell.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				CDB62DB922260ACD0013851A /* URLBuilder.swift */,
 				CDE1065E2228F5D2004E2402 /* VoiceShortcutsManager.swift */,
 				CDE1066622290DD4004E2402 /* ForcePressGestureRecognizer.swift */,
+				CD1830D4233609D0008F7DBF /* ColorCompatibility.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				CDCEE067222128FB00C2E573 /* TerritoriesCollectionViewController.swift in Sources */,
 				CDB62D82222152D50013851A /* String+Localized.swift in Sources */,
 				CDB62DAB222558820013851A /* Bundle+Version.swift in Sources */,
+				CD1830D5233609D0008F7DBF /* ColorCompatibility.swift in Sources */,
 				CDE1065F2228F5D2004E2402 /* VoiceShortcutsManager.swift in Sources */,
 				CDB62DBE2226B4C70013851A /* Territory+Activity.swift in Sources */,
 				CDD1B389222E9689000DB8D1 /* AppListViewController.swift in Sources */,
@@ -522,13 +526,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -578,12 +583,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -595,16 +601,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DevSwitch/Entitlements/DevSwitch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "${DEVELOPMENT_TEAM}";
+				DEVELOPMENT_TEAM = 24AY64LA78;
 				INFOPLIST_FILE = DevSwitch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVSWITCH_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -618,14 +624,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "${DEVELOPMENT_TEAM}";
 				INFOPLIST_FILE = DevSwitch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVSWITCH_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

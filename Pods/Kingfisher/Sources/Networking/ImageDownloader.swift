@@ -193,11 +193,19 @@ open class ImageDownloader {
         }
     }
 
+    // MARK: Dowloading Task
+    /// Downloads an image with a URL and option. Invoked internally by Kingfisher. Subclasses must invoke super.
+    ///
+    /// - Parameters:
+    ///   - url: Target URL.
+    ///   - options: The options could control download behavior. See `KingfisherOptionsInfo`.
+    ///   - completionHandler: Called when the download progress finishes. This block will be called in the queue
+    ///                        defined in `.callbackQueue` in `options` parameter.
+    /// - Returns: A downloading task. You could call `cancel` on it to stop the download task.
     @discardableResult
-    func downloadImage(
+    open func downloadImage(
         with url: URL,
         options: KingfisherParsedOptionsInfo,
-        progressBlock: DownloadProgressBlock? = nil,
         completionHandler: ((Result<ImageLoadingResult, KingfisherError>) -> Void)? = nil) -> DownloadTask?
     {
         // Creates default request.
@@ -224,29 +232,22 @@ open class ImageDownloader {
             return nil
         }
 
-        // Wraps `progressBlock` and `completionHandler` to `onProgress` and `onCompleted` respectively.
-        let onProgress = progressBlock.map {
-            block -> Delegate<(Int64, Int64), Void> in
-            let delegate = Delegate<(Int64, Int64), Void>()
-            delegate.delegate(on: self) { (_, progress) in
-                let (downloaded, total) = progress
-                block(downloaded, total)
-            }
-            return delegate
-        }
+        // Wraps `completionHandler` to `onCompleted` respectively.
 
         let onCompleted = completionHandler.map {
             block -> Delegate<Result<ImageLoadingResult, KingfisherError>, Void> in
             let delegate =  Delegate<Result<ImageLoadingResult, KingfisherError>, Void>()
-            delegate.delegate(on: self) { (_, result) in
-                block(result)
+            delegate.delegate(on: self) { (_, callback) in
+                block(callback)
             }
             return delegate
         }
 
-        // SessionDataTask.TaskCallback is a wrapper for `onProgress`, `onCompleted` and `options` (for processor info)
+        // SessionDataTask.TaskCallback is a wrapper for `onCompleted` and `options` (for processor info)
         let callback = SessionDataTask.TaskCallback(
-            onProgress: onProgress, onCompleted: onCompleted, options: options)
+            onCompleted: onCompleted,
+            options: options
+        )
 
         // Ready to start download. Add it to session task manager (`sessionHandler`)
 
@@ -275,13 +276,15 @@ open class ImageDownloader {
                         self,
                         didFinishDownloadingImageForURL: url,
                         with: value.1,
-                        error: nil)
+                        error: nil
+                    )
                 } catch {
                     self.delegate?.imageDownloader(
                         self,
                         didFinishDownloadingImageForURL: url,
                         with: nil,
-                        error: error)
+                        error: error
+                    )
                 }
 
                 switch result {
@@ -318,7 +321,6 @@ open class ImageDownloader {
         return downloadTask
     }
 
-    // MARK: Dowloading Task
     /// Downloads an image with a URL and option.
     ///
     /// - Parameters:
@@ -335,10 +337,13 @@ open class ImageDownloader {
         progressBlock: DownloadProgressBlock? = nil,
         completionHandler: ((Result<ImageLoadingResult, KingfisherError>) -> Void)? = nil) -> DownloadTask?
     {
+        var info = KingfisherParsedOptionsInfo(options)
+        if let block = progressBlock {
+            info.onDataReceived = (info.onDataReceived ?? []) + [ImageLoadingProgressSideEffect(block)]
+        }
         return downloadImage(
             with: url,
-            options: KingfisherParsedOptionsInfo(options),
-            progressBlock: progressBlock,
+            options: info,
             completionHandler: completionHandler)
     }
 }

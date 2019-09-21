@@ -30,7 +30,7 @@ class HowItWorksViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Guide".localized
-        view.backgroundColor = UIColor("#F0EFF5")
+        view.backgroundColor = UIColor(named: "background")
         
         view.addSubview(scrollView)
         NSLayoutConstraint.activate(scrollView.constraintsToFit(view: view, insets: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)))

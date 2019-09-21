@@ -73,7 +73,7 @@ class TerritoriesCollectionViewController: UICollectionViewController, UICollect
         }
         
         collectionView.alwaysBounceVertical = true
-        collectionView.backgroundColor = UIColor("##F0EFF5")
+        collectionView.backgroundColor = UIColor(named: "background")
         collectionView.register(cellType: TerritoryCell.self)
         collectionView.register(supplementaryViewType: TerritoryHeaderView.self, ofKind: UICollectionView.elementKindSectionHeader)
         collectionView.register(supplementaryViewType: TerritoryFooterView.self, ofKind: UICollectionView.elementKindSectionFooter)
