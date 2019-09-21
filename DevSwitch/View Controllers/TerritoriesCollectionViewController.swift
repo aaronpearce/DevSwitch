@@ -86,6 +86,13 @@ class TerritoriesCollectionViewController: UICollectionViewController, UICollect
         dataSource.updateTokens()
         
         setupGestures()
+      
+      if #available(iOS 13.0, *) {
+        guard #available(iOS 13.1, *) else {
+          AnywhereAlertController.showWithOkay(title: "iOS 13.0 is not supported", message: "Apple disabled this method of storefront switching in 13.0. Use an older version of iOS or update to 13.1 or newer.")
+          return
+        }
+      }
     }
     
     
