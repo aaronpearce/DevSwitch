@@ -65,6 +65,8 @@ Use this string literal in the above, `DevTeam.xcconfig` file to code sign
 
 Thanks to everyone for their support in development and throughout the initial review process that failed and a particular thanks to [@kylehickinson](https://github.com/kylehickinson) for the suggestion to use Brave's `.xcconfig` based setup for local development signing. Credit to [@jhreis](https://github.com/jhreis) for the initial implementation that I based this upon.
 
+Flag icons were created by [Freepik](https://www.flaticon.com/authors/freepik) and are available [here](https://www.flaticon.com/packs/countrys-flags).
+
 ## Open Source & Copying
 
 DevSwitch is licensed under MIT so that you can use any code in your own apps, if you choose.
