@@ -1,3 +1,10 @@
+### Archived as of 24/04/2021.
+
+Apple has again broken the URLs required for storefront switching. I've decided to archive DevSwitch due to this. If Apple ever allows these links again into the future, there are many other better choices to use such as Shortcuts to build a similar tool.
+
+-----
+
+
 <p align="center">
     <img src="https://github.com/aaronpearce/DevSwitch/blob/master/app-icon.png?raw=true" alt="DevSwitch App Icon"/>
 </p>
